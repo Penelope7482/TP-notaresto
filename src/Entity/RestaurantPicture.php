@@ -17,8 +17,26 @@ class RestaurantPicture
      */
     private $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="restaurantPictures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $restaurant;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
     }
 }
