@@ -36,7 +36,7 @@ class Restaurant
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="restaurants")
-     * @ORM\JoinColumn(nullable=false)
+    
      */
     private $city;
 

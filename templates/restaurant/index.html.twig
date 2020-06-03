@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant index
+{% endblock %}
+
+{% block body %}
+	<h1>Restaurants</h1>
+
+
+			{% for restaurant in restaurants %}
+
+				<div class="card">
+					<div class="card-header">
+						<i class="fas fa-h3    ">picture</i>
+					</div>
+
+					<div class="card-body">
+						{{ restaurant.id }}
+						<br>Nom du restau: {{ restaurant.name }}
+                        <br>Commentaires
+                        <br>Description: {{ restaurant.description }}
+					    <br>Créé le: {{ restaurant.createdAt ? restaurant.createdAt|date('d-m-Y H:i:s') : '' }}
+				    </div>
+				<div class="card-footer">
+					<a href="{{ path('restaurant_show', {'id': restaurant.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+					<a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				</div>
+			</div>
+
+	
+</div>{% else %}
+
+	<div><H3>Aucun Restaurant trouvé</H3></div>
+{% endfor %}<a href="{{ path('restaurant_new') }}">Ajouter un Restaurant</a>{% endblock %}
