@@ -1,34 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurant index
+{% block title %}Restaurants
 {% endblock %}
 
 {% block body %}
-	<h1>Restaurants</h1>
+	<div class="text-center">
+		<h1>Restaurants</h1> 
+	</div>
 
-
-			{% for restaurant in restaurants %}
-
-				<div class="card">
-					<div class="card-header">
-						<i class="fas fa-h3    ">picture</i>
+	<div class="album py-5 bg-info">
+		<div class="container">
+        <div class="text-center py-3">
+        <H5><a class="text-white" href=""> Voir les 10 restaurants les mieux notés</a></H5>
+        </div>
+			<div class="row">
+				{% for restaurant in restaurants %}
+					<div class="col-md-4">
+						<div class="card mb-4 shadow-sm">
+                        <div class="card bg-dark text-center px-3 py-3"><h4 class="card-title text-white">{{restaurant.name}}</h4></div>
+							<div class="card-body bg-light">
+								
+								<h4 class="card-title">
+									{% if restaurant.avgRating is null %}
+										Pas de note
+									{% else %}
+										Note moyenne:
+										{{restaurant.avgRating |number_format (2, ',')}}
+									{% endif %}
+								</h4>
+								<h5 class="card-subtitle mb-2 text-muted">Ville:
+									{{restaurant.city.name}}</h5>
+								<h6 class="card-subtitle mb-2 text-muted">
+									Créé le :
+									{{restaurant.createdAt|date("d/m/Y")}}</h6>
+								<p class="card-text">{{restaurant.description}}</p>
+							</div>
+							<div class="card-footer bg-dark d-flex justify-content-center">
+								<div class="btn-group " role="group" aria-label="Basic example">
+									<a class="btn btn-info" href="{{path('restaurant_show', {id : restaurant.id})}}" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
+									<a class="btn btn-info" href="{{path('restaurant_edit', {id : restaurant.id})}}" role="button">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+									{{ include('restaurant/_delete_form.html.twig') }}
+								</div>
+							</div>
+						</div>
 					</div>
-
-					<div class="card-body">
-						{{ restaurant.id }}
-						<br>Nom du restau: {{ restaurant.name }}
-                        <br>Commentaires
-                        <br>Description: {{ restaurant.description }}
-					    <br>Créé le: {{ restaurant.createdAt ? restaurant.createdAt|date('d-m-Y H:i:s') : '' }}
-				    </div>
-				<div class="card-footer">
-					<a href="{{ path('restaurant_show', {'id': restaurant.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-					<a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-				</div>
+				{% endfor %}
 			</div>
-
-	
-</div>{% else %}
-
-	<div><H3>Aucun Restaurant trouvé</H3></div>
-{% endfor %}<a href="{{ path('restaurant_new') }}">Ajouter un Restaurant</a>{% endblock %}
+		</div>
+	</div>
+	<a href="{{ path('restaurant_new') }}">Ajouter un Restaurant</a>
+{% endblock %}

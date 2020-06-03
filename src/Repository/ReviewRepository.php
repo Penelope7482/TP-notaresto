@@ -47,4 +47,19 @@ class ReviewRepository extends ServiceEntityRepository
         ;
     }
     */
+
+//     /**
+//      * @return Review[] Returns an array of Review objects
+//      */
+//    
+//    public function ratingAvg($value)
+//    {
+//        return $this->createQueryBuilder('g')
+//        ->select("avg(g.rating) as rating_avg")
+//        ->where('g.id = :id')
+//        ->groupBy('g.id')
+//        ->setParameter('id', $value)
+//        ->getQuery();
+//        ;
+  //  }    
 }

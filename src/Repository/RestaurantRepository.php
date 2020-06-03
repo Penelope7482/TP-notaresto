@@ -46,5 +46,19 @@ class RestaurantRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    */    
+
+    /**
+      * @return Restaurant[] Returns an array of Restaurant objects
+     */
+    
+    public function findLastTen(): ?Restaurant
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('r.createdAt', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

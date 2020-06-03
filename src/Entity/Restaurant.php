@@ -50,6 +50,8 @@ class Restaurant
      */
     private $reviews;
 
+  //  private $avgRating;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
@@ -98,7 +100,7 @@ class Restaurant
         return $this;
     }
 
-    public function getCity(): ?City
+    public function getCity(): ?city
     {
         return $this->city;
     }
@@ -170,5 +172,22 @@ class Restaurant
         }
 
         return $this;
+    }
+
+    public function getAvgRating() : ?float 
+    {
+
+        $sum = 0;
+        $total = 0;
+
+        foreach ($this->getReviews() as $review) {
+            $sum += $review->getRating();
+            $total++;
+        }
+        if ($total == 0) {
+            return null;
+        } else {
+            return $sum / $total;
+        }
     }
 }

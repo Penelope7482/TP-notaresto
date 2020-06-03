@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Restaurant;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
@@ -10,10 +12,11 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="app_index")
      */
-    public function index()
+    public function index(Request $request, Restaurant $restaurantRepository)
     {
+        $restaurants=$restaurantRepository->findLastTen();
         return $this->render('app/index.html.twig', [
-            'controller_name' => 'AppController',
+            'restaurants' => $restaurants
         ]);
-    }
+    } 
 }
