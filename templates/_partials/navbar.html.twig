@@ -8,13 +8,17 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{path('app_index')}}">Accueil <span class="sr-only">(current)</span></a>
+            <li class="nav-item dropdown active">
+                 <a class="nav-link dropdown-toggle" href="{{path('app_index')}}" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accueil <span class="sr-only">(current)</span></a>
+                 <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="{{path('app_index')}}">Les 10 derniers resto créés</a>
+                    <a class="dropdown-item" href="{{path('restaurant_index')}}">Tous les resto</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">M'authentifier</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item ">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="#">Action 1</a>

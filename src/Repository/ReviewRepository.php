@@ -48,18 +48,33 @@ class ReviewRepository extends ServiceEntityRepository
     }
     */
 
-//     /**
-//      * @return Review[] Returns an array of Review objects
-//      */
-//    
-//    public function ratingAvg($value)
-//    {
-//        return $this->createQueryBuilder('g')
-//        ->select("avg(g.rating) as rating_avg")
-//        ->where('g.id = :id')
-//        ->groupBy('g.id')
-//        ->setParameter('id', $value)
-//        ->getQuery();
-//        ;
-  //  }    
+    //     /**
+    //      * @return Review[] Returns an array of Review objects
+    //      */
+    //    
+    //    public function ratingAvg($value)
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //        ->select("avg(g.rating) as rating_avg")
+    //        ->where('g.id = :id')
+    //        ->groupBy('g.id')
+    //        ->setParameter('id', $value)
+    //        ->getQuery();
+    //        ;
+    //  }    
+
+
+
+    public function findTenBestRatings()
+    {
+    return $this->createQueryBuilder('r')
+    ->select('restaurant.id as restaurantId')
+    ->innerJoin('r.restaurant', 'restaurant')
+    ->groupBy('restaurant')
+    ->orderBy('AVG(r.rating)', 'DESC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
+}
 }

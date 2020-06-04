@@ -12,11 +12,10 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="app_index")
      */
-    public function index(Request $request, Restaurant $restaurantRepository)
+    public function index()
     {
-        $restaurants=$restaurantRepository->findLastTen();
-        return $this->render('app/index.html.twig', [
-            'restaurants' => $restaurants
+          return $this->render('app/index.html.twig', [
+            'restaurants' => $this->getDoctrine()->getRepository(Restaurant::class)->findLastTen(),
         ]);
     } 
 }

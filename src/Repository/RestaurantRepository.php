@@ -52,10 +52,10 @@ class RestaurantRepository extends ServiceEntityRepository
       * @return Restaurant[] Returns an array of Restaurant objects
      */
     
-    public function findLastTen(): ?Restaurant
+    public function findLastTen()
     {
         return $this->createQueryBuilder('s')
-            ->orderBy('r.createdAt', 'DESC')
+            ->orderBy('s.createdAt', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
