@@ -25,7 +25,7 @@ class Review
     private $message;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $rating;
 

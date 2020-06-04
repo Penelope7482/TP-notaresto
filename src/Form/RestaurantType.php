@@ -25,12 +25,12 @@ class RestaurantType extends AbstractType
             //      'class' => Review::class, // Quelle classe est reliée au champ message
             //      'choice_label' => 'message'
             //  ])
-            ->add('createdAt', DateTimeType::class, [
-                'label' => 'Créé le',
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'dd/MM/yyyy HH:mm:ss'
-            ])
+          // ->add('createdAt', DateTimeType::class, [
+          //     'label' => 'Créé le',
+          //     'widget' => 'single_text',
+          //     'html5' => false,
+          //     'format' => 'dd/MM/yyyy HH:mm:ss'
+            //])
             ->add('city',  EntityType::class, [
                 'class' => City::class, // Quelle classe est reliée au champ message
                 'label' => 'Ville',
