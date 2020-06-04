@@ -50,6 +50,14 @@ class Restaurant
      */
     private $reviews;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+ 
+
   //  private $avgRating;
 
     public function __construct()
@@ -184,10 +192,26 @@ class Restaurant
             $sum += $review->getRating();
             $total++;
         }
-        if ($total == 0) {
-            return null;
-        } else {
+        if ($total > 0) {
             return $sum / $total;
+        } else {
+            return null;
         }
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+  
+
+    
 }

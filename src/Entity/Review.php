@@ -50,6 +50,14 @@ class Review
      */
     private $childs;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+  
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
@@ -152,5 +160,18 @@ class Review
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+ 
     
 }

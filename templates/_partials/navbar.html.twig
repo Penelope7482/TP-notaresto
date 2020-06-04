@@ -15,16 +15,31 @@
                     <a class="dropdown-item" href="{{path('restaurant_index')}}">Tous les resto</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">M'authentifier</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
-                </div>
-            </li>
+             <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mes Restaurants</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Ajouter un restaurant</a>
+        </li>
+             <li class="nav-item">
+            <a class="nav-link" href="{{path('user_index')}}" tabindex="-1" aria-disabled="true">Tous les utilisateurs</a>
+        </li>
+             {% if app.user %}
+             <li class="nav-item">
+            <a class="nav-link" href="{{path('app_index')}}" tabindex="-1" aria-disabled="true">Bienvenue, {{app.user.email}} !</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('app_logout')}}" tabindex="-1" aria-disabled="true">Déconnexion</a>
+        </li>
+        {% else %}
+            
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('app_login')}}" tabindex="-1" aria-disabled="true">Se connecter</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('app_register')}}" tabindex="-1" aria-disabled="true">Créer un compte</a>
+        </li>
+        {% endif %}
         </ul>
         <form action="#"  method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Code postal">
