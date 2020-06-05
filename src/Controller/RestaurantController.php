@@ -35,7 +35,7 @@ class RestaurantController extends AbstractController
 
        /**
      * @Route("/mesresto", name="restaurant_indexrestaurateur", methods={"GET"})
-     * @IsGranted("ROLE_RESTAURATEUR")
+     * @IsGranted("ROLE_RESTO")
      */
     public function indexRestaurateur(): Response
     {
@@ -124,7 +124,7 @@ class RestaurantController extends AbstractController
 */
 public function show(Request $request, Restaurant $restaurant, FileUploader $fileUploader)
     {
-        if ($this->isGranted('ROLE_RESTAURATEUR')){
+        if ($this->isGranted("ROLE_RESTO")){
             $picture = new RestaurantPicture();
             $form = $this->createForm(RestaurantPictureType::class, $picture);
 
