@@ -7,9 +7,16 @@
 	<div class="mt-3 mx-auto col-sm-6 ">
 		<div class="card ">
 			<div class="card-header bg-dark">
-				<h4 class="card-title text-white">{{ restaurant.name }}<h4></div>
+				<h4 class="card-title text-white  text-center">{{ restaurant.name }}<h4>
 
-					<div class="card-body bg-light">
+
+						<p class="text-center">
+							{% for picture in restaurant.restaurantPictures %}
+								<img src="{{ asset('uploads/pictures/' ~ picture.filename) }}" alt="" width="30%" class="mb-1" data-toggle="modal" data-target="#picture-{{ picture.id }}">
+							{% endfor %}
+						</p>
+					</div>
+					<div class="card-body bg-light text-black">
 						<h4 class="card-title">Description:</h4>
 						{{ restaurant.description }}
 						<br><br>
@@ -22,7 +29,46 @@
 						<em>(Créé le:
 							{{ restaurant.createdAt ? restaurant.createdAt|date('d/m/Y H:i', "Europe/Paris")}})</em>
 					</div>
+					{% if is_granted ("ROLE_RESTAURATEUR") %}
+						<h3>Ajouter une image</h3>
+						{{ form_start(formPicture) }}
+						{{ form_widget(formPicture) }}
+						<button class="btn btn-sm btn-info">Envoyer</button>
+						{{ form_end(formPicture) }}
+					{% endif %}
+					{% for picture in restaurant.restaurantPictures %}
+						<!-- Modal -->
+						<div class="modal fade" id="picture-{{ picture.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog mw-100 w-75" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<img src="{{ asset('uploads/pictures/' ~ picture.filename) }}" width="100%">
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					{% if is_granted ("ROLE_RESTAURATEUR")==false %}
+						<div class="card mb-2">
+							<div class="card-header">
+								Rédigez un avis sur ce restaurant !
+							</div>
+							<div class="card-body">
+								{{ form_start(formReview) }}
+								{{ form_widget(formReview) }}
+								<button class="btn-sm btn-primary text-center">Envoyer</button>
+								{{ form_end(formReview) }}
+							</div>
+						</div>
+					{% endif %}
 					<div class="card-footer bg-dark row justify-content-center">
+
+
 						<a class="btn btn-info" href="{{ path('restaurant_index') }}">
 							<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
 						</a>

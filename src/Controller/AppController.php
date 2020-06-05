@@ -17,5 +17,5 @@ class AppController extends AbstractController
           return $this->render('app/index.html.twig', [
             'restaurants' => $this->getDoctrine()->getRepository(Restaurant::class)->findLastTen(),
         ]);
-    } 
+    }  
 }

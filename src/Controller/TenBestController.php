@@ -43,7 +43,7 @@ public function index()
 
     return $this->render('app/index.html.twig', [
         // Cette fois, on envoie à Twig notre nouveau tableau
-        'restaurants' => $tenBestRestaurants,
+        'restaurants' => $tenBestRestaurants, 
     ]);
 }
 }

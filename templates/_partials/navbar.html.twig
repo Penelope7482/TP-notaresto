@@ -1,49 +1,57 @@
 {# template navbar#}
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">NotaResto</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item dropdown active">
-                 <a class="nav-link dropdown-toggle" href="{{path('app_index')}}" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accueil <span class="sr-only">(current)</span></a>
-                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="{{path('app_index')}}">Les 10 derniers resto créés</a>
-                    <a class="dropdown-item" href="{{path('restaurant_index')}}">Tous les resto</a>
-                </div>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mes Restaurants</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{path('restaurant_new')}}" tabindex="-1" aria-disabled="true">Ajouter un restaurant</a>
-        </li>
-             <li class="nav-item">
-            <a class="nav-link" href="{{path('user_index')}}" tabindex="-1" aria-disabled="true">Tous les utilisateurs</a>
-        </li>
-             {% if app.user %}
-             <li class="nav-item">
-            <a class="nav-link" href="{{path('app_index')}}" tabindex="-1" aria-disabled="true">Bienvenue, {{app.user.email}} !</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{path('app_logout')}}" tabindex="-1" aria-disabled="true">Déconnexion</a>
-        </li>
-        {% else %}
-            
-        <li class="nav-item">
-            <a class="nav-link" href="{{path('app_login')}}" tabindex="-1" aria-disabled="true">Se connecter</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{path('app_register')}}" tabindex="-1" aria-disabled="true">Créer un compte</a>
-        </li>
-        {% endif %}
-        </ul>
-        <form action="#"  method="GET" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Code postal">
-            <button class="border-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </form>
-    </div>
-</nav>
+	<a class="navbar-brand" href="#">NotaResto</a>
+	<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="collapsibleNavId">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			<li class="nav-item dropdown active">
+				<a class="nav-link dropdown-toggle" href="{{path('app_index')}}" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accueil
+					<span class="sr-only">(current)</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="dropdownId">
+					<a class="dropdown-item" href="{{path('app_index')}}">Les 10 derniers resto créés</a>
+					<a class="dropdown-item" href="{{path('restaurant_index')}}">Tous les resto</a>
+				</div>
+			</li>
+			{% if is_granted("ROLE_RESTAURATEUR") %}
+				<li class="nav-item">
+
+					<a class="nav-link" href="{{path('restaurant_indexrestaurateur')}}" tabindex="-1" aria-disabled="true">Mes Restaurants</a>
+				
+			</li>
+		{% endif %}
+		<li class="nav-item">
+			<a class="nav-link" href="{{path('restaurant_new')}}" tabindex="-1" aria-disabled="true">Ajouter un restaurant</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="{{path('user_index')}}" tabindex="-1" aria-disabled="true">Tous les utilisateurs</a>
+		</li>
+		{% if app.user %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('app_index')}}" tabindex="-1" aria-disabled="true">Bienvenue,
+					{{app.user.email}}
+					!</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('app_logout')}}" tabindex="-1" aria-disabled="true">Déconnexion</a>
+			</li>
+		{% else %}
+
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('app_login')}}" tabindex="-1" aria-disabled="true">Se connecter</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('app_register')}}" tabindex="-1" aria-disabled="true">Créer un compte</a>
+			</li>
+		{% endif %}
+	</ul>
+	<form action="#" method="GET" class="form-inline my-2 my-lg-0">
+		<input class="form-control mr-sm-2" type="text" placeholder="Code postal">
+		<button class="border-0" type="submit">
+			<i class="fa fa-search" aria-hidden="true"></i>
+		</button>
+	</form>
+</div></nav>

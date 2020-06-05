@@ -14,3 +14,10 @@
 		</a>
 	</div>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.restaurant-form-city').select2();
+        });
+    </script>
+{% endblock %}

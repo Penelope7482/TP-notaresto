@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les 10 derniers Restaurants créés{% endblock %}
+{% block title %}Restaurants
+{% endblock %}
 
 {% block body %}
 	<div class="text-center">
@@ -13,10 +14,10 @@
         <H5><a class="text-white" href="{{path('tenbest_index')}}"> Voir les 10 restaurants les mieux notés</a></H5>
         </div>
 			<div class="row">
-				{% for restaurant in restaurants %}
+				{% for user in users %}
 					<div class="col-md-4">
 						<div class="card mb-4 shadow-sm">
-                        <div class="card bg-dark text-center px-3 py-3"><h4 class="card-title text-white">{{restaurant.name}}</h4></div>
+                        <div class="card bg-dark text-center px-3 py-3"><h4 class="card-title text-white">{{user.name}}</h4></div>
 							<div class="card-body bg-light">
 								
 								<h4 class="card-title">
@@ -36,8 +37,8 @@
 							</div>
 							<div class="card-footer bg-dark d-flex justify-content-center">
 								<div class="btn-group " role="group" aria-label="Basic example">
-									<a class="btn btn-info" href="{{path('restaurant_show', {restaurant : restaurant.id})}}" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
-									<a class="btn btn-info" href="{{path('restaurant_edit', {restaurant : restaurant.id})}}" role="button">
+									<a class="btn btn-info" href="{{path('restaurant_show', {id : restaurant.id})}}" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
+									<a class="btn btn-info" href="{{path('restaurant_edit', {id : restaurant.id})}}" role="button">
 										<i class="fas fa-pencil-alt"></i>
 									</a>
 									{{ include('restaurant/_delete_form.html.twig') }}
@@ -51,4 +52,3 @@
 	</div>
 	<a href="{{ path('restaurant_new') }}">Ajouter un Restaurant</a>
 {% endblock %}
-

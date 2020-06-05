@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Restaurant
+{% block title %}Mise à jour Restaurant
 {% endblock %}
 
 {% block body %}
@@ -18,4 +18,11 @@
 
 		{{ include('restaurant/_delete_form.html.twig') }}
 	</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.restaurant-form-city').select2();
+        });
+    </script>
 {% endblock %}

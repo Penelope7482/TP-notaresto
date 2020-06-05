@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Restaurant;
+use App\Entity\User;
+use App\Repository\RestaurantRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
-    /**
+/**
  * @Route("/", name="user_index", methods={"GET"})
  */
     public function index(UserRepository $userRepository): Response
@@ -23,4 +25,7 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     } 
+
+
+
 }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Review;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,9 +15,10 @@ class ReviewType extends AbstractType
         $builder
             ->add('message')
             ->add('rating')
-            ->add('createdAt')
-            ->add('restaurant')
-            ->add('parent')
+            
+        
+      //      ->add('restaurant')
+       //     ->add('parent')
         ;
     }
 

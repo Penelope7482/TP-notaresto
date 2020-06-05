@@ -37,8 +37,8 @@
 							</div>
 							<div class="card-footer bg-dark d-flex justify-content-center">
 								<div class="btn-group " role="group" aria-label="Basic example">
-									<a class="btn btn-info" href="{{path('restaurant_show', {id : restaurant.id})}}" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
-									<a class="btn btn-info" href="{{path('restaurant_edit', {id : restaurant.id})}}" role="button">
+									<a class="btn btn-info" href="{{path('restaurant_show', {restaurant : restaurant.id})}}" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
+									<a class="btn btn-info" href="{{path('restaurant_edit', {restaurant : restaurant.id})}}" role="button">
 										<i class="fas fa-pencil-alt"></i>
 									</a>
 									{{ include('restaurant/_delete_form.html.twig') }}
